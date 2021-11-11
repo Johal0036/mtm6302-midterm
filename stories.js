@@ -1,5 +1,4 @@
-const stories = [
-  {
+const stories = [{
     title: 'Mission Statement',
     words: [
       'Adjective',
