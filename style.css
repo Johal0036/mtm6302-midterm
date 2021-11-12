@@ -45,7 +45,7 @@ h3 {
 }
 
 #refresh {
-    display: flex;
+    display: none;
     justify-content: center;
     margin: auto;
     align-items: center;
