@@ -12,42 +12,29 @@ const result = document.getElementById("result")
 const refresh = document.getElementById("refresh")
 
 mission.addEventListener("click", function () {
-    this['stories' [0]]; // this line will retrieve the information from the stories.js file
-    form.innerHTML = `<h2>Fill out the fields below to complete the story.</h2>
-    <input type="text" name="Adjective" placeholder="Adjective"></input>
-    <input type="text" name="Verb 1" placeholder="Verb 1"></input>
-    <input type="text" name="Verb 2" placeholder="Verb 2"></input>
-    <input type="text" name="Plural Noun 1" placeholder="Plural Noun 1"></input>
-    <input type="text" name="Plural Noun 2" placeholder="Plural Noun 2"></input>
-    <input type="text" name="Plural Noun 3" placeholder="Plural Noun 3"></input>
-    <button id="storybtn" class="btn" type="submit">Generate Story</button>`
+    formHtmlBuilder(0);
 })
 
 lunch.addEventListener("click", function () {
-    this['stories' [1]];
-    form.innerHTML = `<h2>Fill out the fields below to complete the story.</h2>
-    <input type="text" name="Animal" placeholder="Animal"></input>
-    <input type="text" name="Adjective 1" placeholder="Adjective 1"></input>
-    <input type="text" name="Adjective 2" placeholder="Adjective 2"></input>
-    <input type="text" name="Vegetable 1" placeholder="Vegetable 1"></input>
-    <input type="text" name="Vegetable 2" placeholder="Vegetable 2"></input>
-    <input type="text" name="Noun" placeholder="Noun"></input>
-    <input type="text" name="Container" placeholder="Container"></input>
-    <button id="storybtn" class="btn" type="submit">Generate Story</button>`
+    formHtmlBuilder(1);
 })
 
 weather.addEventListener("click", function () {
-    this['stories' [2]];
-    form.innerHTML = `<h2>Fill out the fields below to complete the story.</h2>
-    <input type="text" name="Adjective 1" placeholder="Adjective 1"></input>
-    <input type="text" name="Adjective 2" placeholder="Adjective 2"></input>
-    <input type="text" name="Article of Clothing" placeholder="Article of Clothing"></input>
-    <input type="text" name="Number 1" placeholder="Number 1"></input>
-    <input type="text" name="Number 2" placeholder="Number 2"></input>
-    <input type="text" name="Plural Noun 1" placeholder="Plural Noun 1"></input>
-    <input type="text" name="Plural Noun 2" placeholder="Plural Noun 2"></input>
-    <button id="storybtn" class="btn" type="submit">Generate Story</button>`
+    formHtmlBuilder(2);
 })
+
+function formHtmlBuilder(index) {
+    form.innerHTML = `<h2>Fill out the fields below to complete the story.</h2>
+    <input type="text" name="${stories[index].words[0]}" placeholder="${stories[index].words[0]}"></input>
+    <input type="text" name="${stories[index].words[1]}" placeholder="${stories[index].words[1]}"></input>
+    <input type="text" name="${stories[index].words[2]}" placeholder="${stories[index].words[2]}"></input>
+    <input type="text" name="${stories[index].words[3]}" placeholder="${stories[index].words[3]}"></input>
+    <input type="text" name="${stories[index].words[4]}" placeholder="${stories[index].words[4]}"></input>
+    <input type="text" name="${stories[index].words[5]}" placeholder="${stories[index].words[5]}"></input>
+    <button id="storybtn" class="btn" type="submit">Generate Story</button>`
+    form.dataset.id = index;
+}
+
 
 button.addEventListener("click", function (e) {
     if (e.target.classList.contains("btn")) {
@@ -67,7 +54,8 @@ form.addEventListener("submit", function (e) {
         }
     }
     result.style.display = "block"
-    result.innerHTML = stories[result.dataset.id].output(inputs) // this line will generate the mad libs story
+    const word = stories[form.dataset.id].title
+    result.innerHTML = stories[form.dataset.id].output(inputs) // this line will generate the mad libs story
     refresh.style.display = "block"
 })
 
